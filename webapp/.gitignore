@@ -69,3 +69,6 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# App
+public/stylesheets/style.css
