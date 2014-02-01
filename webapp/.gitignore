@@ -72,3 +72,4 @@ docs/_build/
 
 # App
 public/stylesheets/style.css
+public/libs/*
