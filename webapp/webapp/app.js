@@ -20,7 +20,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
+app.use(express.cookieParser('e4933f5566c21bdca6b1077c6f60f1429d6966432be4def199d2a78991d2c800eecbe4bfd6044147c91c43406072035077656730ba476f7cb6285849fd2e45bd'));
 app.use(express.session());
 app.use(app.router);
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
