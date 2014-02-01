@@ -7,28 +7,27 @@ var mongoose = require('mongoose');
 
 // configuration files
 var db = require('./config/db');
+mongoose.connect(db.url);
 
 // configuration
-app.configure(function() {
-    app.set('port', process.env.PORT || 3000);
-    app.use(express.logger('dev'));
-    app.use(express.json());
-    app.use(express.cookieParser('e4933f5566c21bdca6b1077c6f60f1429d6966432be4def199d2a78991d2c800eecbe4bfd6044147c91c43406072035077656730ba476f7cb6285849fd2e45bd'));
-    app.use(express.session());
-    app.use(app.router);
-    app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
-    app.use(express.static(path.join(__dirname, 'public')));
-
-    mongoose.connect(db.url);
-});
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'nunjucks');
+app.use("/public", express.static(path.join(__dirname, 'public')));
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.methodOverride());
+app.use(express.cookieParser('e4933f5566c21bdca6b1077c6f60f1429d6966432be4def199d2a78991d2c800eecbe4bfd6044147c91c43406072035077656730ba476f7cb6285849fd2e45bd'));
+app.use(express.session());
+app.use(app.router);
 
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
 // routes
-require('./routes/api')(app);
-require('./routes/frontend')(app);
+require('./routes/api.js')(app);
+require('./routes/frontend.js')(app);
 
 // start app
 http.createServer(app).listen(app.get('port'), function(){
