@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}The IT job marketplace done right{% endblock %} - Werk.io</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="author" content="Diogo Osório">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="{% block description %}the IT job marketplace done right{% endblock %}">
+
+    <!-- Le beautifiers -->
+    <link rel="stylesheet" type="text/css" href="/public/libs/ink/css/ink-min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/app.css">
+    {% block stylesheets %}{% endblock %}
+
+    <!--[if lt IE9]>
+        <script type="text/javascript" src="/public/libs/ink/js/html5shiv.js"></scrit>
+        <script type="text/javascript" src="/public/libs/ink/js/html5shiv-printshiv.js"></scrit>
+    <![endif]-->
+</head>
+<body>
+    <div class="ink-grid">
+        <header>
+            {% block header %}
+            {% include 'partials/common/header.html' %}
+            {% endblock %}
+        </header>
+        <div class="column-group gutters">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<aside>
+    <p>
+    Personalize your results, add some constraints
+    to your search:
+    </p>
+    <form class="ink-form" method="GET" action="/">
+        <fieldset>
+            <div class="control-group"> 
+                <ul class="control unstyled">
+                    <li>
+                    <input type="checkbox" id="filter-consultancy" name="constraint[consultancy]">
+                    <label for="filter-consultancy">
+                        Filter consultancy agencies?
+                    </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="control-group column-group">
+                <div class="control large-100">
+                    <input type="text" name="constraint[location]" id="filter-location" placeholder="Add a location filter. Example: Amsterdam">
+                </div>
+            </div>
+            <div class="control-group content-right">
+                <button class="ink-button" type="submit">Apply Filter</button>
+            </div>
+        </fieldset>
+    </form>
+</aside>

@@ -1,0 +1,105 @@
+a {
+    color: #6a6760;
+    text-decoration: none;
+}
+label, input[type="checkbox"] {
+    cursor: pointer;
+}
+a:hover, a:active {
+    text-decoration: none;
+    color: #44749D;
+}
+.menu a {
+    color: #BDB8AD;
+    text-decoration: underline;
+}
+.logo {
+    line-height: 1.8em;
+}
+.logo a, .logo a:hover {
+    text-decoration: none;
+    color: #44749D;
+}
+h1 {
+    font-size: 1.6em;
+}
+.logo small {
+    text-transform: lowercase;
+}
+a.no-underline, a.no-underline:hover {
+    text-decoration: none;
+}
+ul.boxed li {
+    padding: 0.4em;
+    background-color: #C6D4E1;
+    position: relative;
+}
+.relative {
+    position: relative;
+}
+.job-icons li {
+    width: 20px;
+    height: 20px;
+}
+.vote a {
+    display: block;
+    text-decoration: none;
+}
+span[data-vote-count] {
+    padding-left: 0.3em;
+}
+
+h5 i {
+    font-size: 0.6em;
+}
+
+header p {
+    margin-top: 0.2em;
+    font-size: 0.7em;
+}
+.border-bottom {
+    border-bottom: 1px solid #44749D;
+}
+ul.horizontal li {
+    margin: 0 0.3em;
+    float: left;
+}
+ul.horizontal li:first-child {
+    margin-left: 0;
+}
+ul.double-list-space li {
+    margin: 0 1em;
+}
+ul.job-detail span {
+    font-weight: bold;
+    margin-right: 0.4em;
+}
+a.keyword {
+    padding: 0.1em 0.3em;
+    background-color: #E0E0E0;
+    border-radius: 0.2em;
+    border: 1px solid #bbb;
+}
+.vote {
+    padding-top: 0.8em;
+}
+a[data-pagination] {
+    padding: 0.2em 8em;
+}
+@media screen and (min-width: 767px) {
+
+}
+
+@media screen and (min-width: 0px) and (max-width: 0px) {
+    ul.job-detail li {
+        float: none;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    ul.job-detail li {
+        float: none;
+        margin: 0;
+    }
+}
