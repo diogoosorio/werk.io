@@ -1,13 +1,33 @@
 {% extends 'layout/base.html' %}
 {% block content %}
 <div class="large-100 medium-100 small-100">
-    <div class="column-group relative">
-        {% include 'partials/home/job-detail.html' %}
-        {% include 'partials/home/job-detail.html' %}
-        {% include 'partials/home/job-detail.html' %}
-        {% include 'partials/home/job-detail.html' %}
-        {% include 'partials/home/job-detail.html' %}
-        {% include 'partials/home/job-detail.html' %}
+    <p class="content-center">
+        The latest IT job offers in Portugal. Consultancy agencies not allowed.
+    </p>
+    <div class="column-group vertical-space">
+        <div class="large-100 medium-100 small-100">
+            <div class="day half-vertical-space">
+                <i class="icon-calendar"></i>
+                <time datetime="2014-02-01">Saturday, February 1st</time>
+            </div>
+            <div class="column-group relative">
+                {% include 'partials/home/job-detail.html' %}
+                {% include 'partials/home/job-detail.html' %}
+                {% include 'partials/home/job-detail.html' %}
+            </div>
+        </div>
+
+        <div class="large-100 medium-100 small-100">
+            <div class="day half-vertical-space">
+                <i class="icon-calendar"></i>
+                <time datetime="2014-02-01">Saturday, February 1st</time>
+            </div>
+            <div class="column-group relative">
+                {% include 'partials/home/job-detail.html' %}
+                {% include 'partials/home/job-detail.html' %}
+                {% include 'partials/home/job-detail.html' %}
+            </div>
+        </div>
 
         <div class="large-100 small-100 medium-100 content-center vertical-space">
             <a data-pagination="1" class="keyword" href="/?page=2">
