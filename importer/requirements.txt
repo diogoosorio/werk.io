@@ -1,2 +1,4 @@
-python-daemon=="1.5.5"
-scrapy=="0.22.0"
+python-daemon==1.5.5
+pymongo==2.6.3
+beautifulsoup4==4.3.2
+requests==2.2.1

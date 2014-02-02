@@ -4,7 +4,9 @@ setup(
     name="Werk.IO Importer",
     version="1.0",
     install_requires=[
-        "scrapy",
-        "python-daemon"
+        "beautifulsoup4",
+        "requests",
+        "python-daemon",
+        "pymongo"
     ]
 );
