@@ -18,25 +18,50 @@ class ITJobs(object):
     country_offer = 'Portugal'
     source        = 'itjobs'
 
-    def __init__(self, db):
+    def __init__(self, db, consultancies, technologies):
         self.db = db
+        self.consultancies = consultancies
+        self.technologies  = set(technologies)
 
-    def scrape(self, last_document, nentries):
+        re_lambda = lambda x: re.escape(x)
+        consultancies = map(re_lambda, consultancies)
+        self.re_consultancies = re.compile('|'.join(consultancies))
+
+
+    def scrape(self, last_document, since_date):
         original_locale = locale.getlocale(locale.LC_TIME)
         locale.setlocale(locale.LC_TIME, self.site_locale)
 
-        if last_document is None:
-            inserted_entries = 0
-            current_page = 1
+        self.last_document = last_document
+        self.since_date    = since_date
+        inserted_entries   = 0
 
-            while inserted_entries < nentries:
-                page_entries = self.page_entries(1)
-                self.db.jobs.insert(page_entries)
+        for docs in self.docs_in_range():
+            self.db.jobs.insert(docs)
+            inserted_entries += len(docs)
+            print "Inserted more {} entries. Total: ".format(len(docs), inserted_entries)
 
-                inserted_entries += len(page_entries)
-                current_page += 1
 
-                print "Inserted more {} entries. Total: ".format(len(page_entries), inserted_entries)
+    def docs_in_range(self):
+        since_date  = self.last_document['publish_date'] if self.last_document else self.since_date
+        page_number = 1
+        more_recent_doc = False
+
+        while not more_recent_doc:
+            jobs = []
+            page_entries = self.page_entries(page_number)
+
+            for href in page_entries:
+                job = self.entry(href)
+
+                if job['publish_date'] < since_date:
+                    more_recent_doc = True
+                    break
+
+                jobs.append(job)
+
+            if len(jobs) > 0:
+                yield jobs
 
 
     def page_entries(self, page):
@@ -46,7 +71,8 @@ class ITJobs(object):
 
         entries = soup.find_all('article', class_='item')
         entries = map(lambda x: x.div.h1.a['href'], entries)
-        return map(self.entry, entries)
+        print "Retrieved {} entries from page {}".format(len(entries), page)
+        return entries
 
 
     def entry(self, href):
@@ -57,12 +83,21 @@ class ITJobs(object):
         publish_date = time.strptime(soup.find('div', class_='date').get_text(), 'Publicado em %d %B %Y')
         publish_date = datetime.datetime.fromtimestamp(time.mktime(publish_date))
 
+        details  = list(soup.find('div', class_='details').stripped_strings)
+        location = details[1].split(' - ')[0]
+
+        body_text  = soup.find('div', class_='body').get_text().lower()
+        body_words = set(body_text.split())
+
         job = {}
-        job['title']        = soup.h1.get_text()
-        job['company']      = soup.find('div', class_='company').a.get_text()
-        job['publish_date'] = publish_date
-        job['body']         = str(soup.find('div', class_='body'))
-        job['source']       = self.source
+        job['title']          = soup.h1.get_text()
+        job['company']        = soup.find('div', class_='company').a.get_text()
+        job['publish_date']   = publish_date
+        job['body']           = str(soup.find('div', class_='body'))
+        job['source']         = self.source
+        job['location']       = location
+        job['is_consultancy'] = self.re_consultancies.search(job['company'].lower()) != None
+        job['technologies']   = list(self.technologies.intersection(body_words))
 
         print "Fecthed {}. Waiting a second...".format(url)
         time.sleep(1)
