@@ -44,6 +44,7 @@ class ITJobs(object):
 
     def docs_in_range(self):
         since_date  = self.last_document['publish_date'] if self.last_document else self.since_date
+        source_id   = self.last_document['source_id'] if self.last_document else None
         page_number = 1
         more_recent_doc = False
 
@@ -54,7 +55,8 @@ class ITJobs(object):
             for href in page_entries:
                 job = self.entry(href)
 
-                if job['publish_date'] < since_date:
+                if job['publish_date'] < since_date or job['source_id'] == source_id:
+                    print "Stoping insertion, because found a duplicated entry."
                     more_recent_doc = True
                     break
 
@@ -101,6 +103,7 @@ class ITJobs(object):
         job['location']       = location
         job['is_consultancy'] = self.re_consultancies.search(job['company'].lower()) != None
         job['technologies']   = list(self.technologies.intersection(body_words))
+        job['source_id']      = re.match(self.detail_regexp, href, re.IGNORECASE).groups()[0]
 
         print "Fecthed {}. Waiting a second...".format(url)
         time.sleep(1)
