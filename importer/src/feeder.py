@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
+import daemon
 import scrappers
 import pymongo
 import os
 import sys
 import datetime
+import time
 import re
 
 from config import Config
@@ -53,4 +55,8 @@ class JobFeeder(object):
 if __name__ == '__main__':
     feeder = JobFeeder(SCRAPPERS)
     feeder.bootstrap()
-    feeder.run()
+
+    with daemon.DaemonContext():
+        while True:
+            feeder.run()
+            time.sleep(120)
