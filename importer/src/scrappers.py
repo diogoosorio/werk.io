@@ -87,6 +87,9 @@ class ITJobs(object):
         location = details[1].split(' - ')[0]
 
         body_text  = soup.find('div', class_='body').get_text().lower()
+        for pontuaction in [', ', '. ', '! ']:
+            body_text = body_text.replace(pontuaction, ' ')
+
         body_words = set(body_text.split())
 
         job = {}
