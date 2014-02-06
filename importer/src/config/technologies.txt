@@ -8,6 +8,7 @@ algol
 alice
 angelscript
 apex
+apache
 apl
 applescript
 arc
@@ -107,6 +108,10 @@ intercal
 io
 ioke
 j
+j2ee
+jee
+jse
+j2se
 j#
 jade
 java
@@ -150,6 +155,7 @@ modula-2
 modula-3
 moo
 moto
+mysql
 ms-dos batch
 mumps
 natural
@@ -181,6 +187,7 @@ pilot
 pl/i
 pl/sql
 pliant
+postgresql
 postscript
 pov-ray
 powerbasic
@@ -222,6 +229,7 @@ smarty
 spark
 spss
 sql
+sql server
 sqr
 squeak
 squirrel
@@ -256,3 +264,9 @@ yacc
 yorick
 z shell
 .net
+struts
+html
+jsp
+cocoa
+vb6
+oracle
