@@ -12,33 +12,39 @@
             <div class="large-80 medium-75 small-70">
                 <header>
                     <h5>
-                        <a href="http://itjobs.pt/oferta/85164/business-analysts" target="_blank">
-                            Programador Java Júnior
+                        <a href="{{ job.url }}" target="_blank">
+                            {{ job.title }}
                             <i class="icon-external-link"></i>
                         </a>
                     </h5>
                 </header>
                 <section class="quarter-vertical-space">
                     <ul class="unstyled horizontal job-detail small quarter-vertical-space double-list-space">
+                        {% if job.company %}
                         <li>
-                        <span>Employer:</span> <a href="http://www.sapo.pt/">Sapo</a>
+                            <span>Employer:</span> {{ job.company }}
                         </li>
+                        {% endif %}
+
                         <li>
-                        <span>Source:</span> <a href="http://itjobs.pt/">ITJobs</a>
+                            <span>Source:</span> {{ job.source }}
                         </li>
+
                         <li>
-                        <span>Location:</span> Lisbon, Portugal
+                            <span>Location:</span> {{ job.location }}
                         </li>
+                        {% if job.technologies.length > 0 %}
                         <li>
-                        <span>Keywords:</span>
-                        <a class="keyword" href="#">Java</a>
-                        <a class="keyword" href="#">Python</a>
-                        <a class="keyword" href="#">Spring</a>
-                        <a class="keyword" href="#">Oracle</a>
+                            <span>Keywords:</span>
+                            {% for technology in job.technologies %}
+                            <a class="keyword" href="#">{{ technology }}</a>
+                            {% endfor %}
                         </li>
+                        {% endif %}
                     </ul>
                 </section>
             </div>
+            <!--
             <div class="large-10 medium-15 small-20 job-icons">
                 <ul class="unstyled horizontal">
                     <li>
@@ -53,6 +59,7 @@
                     </li>
                 </ul>
             </div>
+            -->
         </div>
     </article>
     <hr />
