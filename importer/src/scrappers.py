@@ -104,6 +104,7 @@ class ITJobs(object):
         job['is_consultancy'] = self.re_consultancies.search(job['company'].lower()) != None
         job['technologies']   = list(self.technologies.intersection(body_words))
         job['source_id']      = re.match(self.detail_regexp, href, re.IGNORECASE).groups()[0]
+        job['url']            = url
 
         print "Fecthed {}. Waiting a second...".format(url)
         time.sleep(1)
