@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://localhost/werk-dev'
+    url: 'mongodb://localhost/werk'
 }
