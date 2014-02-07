@@ -5,6 +5,7 @@ var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
 var nunjucks = require('nunjucks');
+var moment = require('moment');
 
 // configuration files
 var db = require('./config/db');
@@ -28,6 +29,10 @@ app.configure(function() {
     app.use(express.session());
     app.use(app.router);
     app.use(express.errorHandler());
+
+    app.locals({
+        moment: moment
+    });
 });
 
 // routes
