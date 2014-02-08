@@ -1,16 +1,17 @@
+{% if pagination and pagination.total_pages > 1 %}
 <nav class="ink-navigation">
     <ul class="pagination flat grey">
-        <li class="previous">
-        <a href="#">Previous</a>
+        <li class="previous {% if not pagination.has_previous_page %}disabled{% endif %}">
+            <a href="{% if not pagination.has_previous_page %}#{% else %}?page={{ pagination.previous_page }}{% endif %}">Previous</a>
         </li>
+        {% for page in range(pagination.first_page, pagination.last_page + 1) %}
+        <li {% if page == pagination.current_page %}class="active"{% endif %}>
+            <a href="?page={{ page }}">{{ page }}</a>
         <li>
-        <a href="#">1</a>
-        </li>
-        <li>
-        <a href="#">2</a>
-        </li>
-        <li class="next">
-        <a href="#">Next</a>
+        {% endfor %}
+        <li class="next {% if not pagination.has_next_page %}disabled{% endif %}">
+            <a href="{% if not pagination.has_next_page %}#{% else %}?page={{ pagination.next_page }}{% endif %}">Next</a>
         </li>
     </ul>
 </nav>
+{% endif %}
