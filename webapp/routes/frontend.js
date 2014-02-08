@@ -29,10 +29,10 @@ module.exports = function(app) {
                 res.render('index.html', {jobs: ordered_jobs, pagination: pagination});
             };
 
-        Models.Job.find({is_consultancy: false})
+        Models.Job.find({ is_consultancy: false })
             .limit(pagesize)
             .skip((page - 1) * pagesize)
-            .sort('-publish_date')
+            .sort({ publish_date: -1, votes: -1 })
             .exec(function(err, jobs) {
                 Models.Job.count({is_consultancy: false})
                     .exec(function(err, count) {
