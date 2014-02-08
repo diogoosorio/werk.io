@@ -1,7 +1,7 @@
 // Frontend routes
 
 var models   = require('../lib/models');
-var pagesize = 10;
+var pagesize = 20;
 
 module.exports = function(app) {
 
@@ -25,7 +25,7 @@ module.exports = function(app) {
                 res.render('index.html', {jobs: ordered_jobs});
             };
 
-        models.Job.find()
+        models.Job.find({is_consultancy: false})
             .limit(pagesize)
             .skip((page - 1) * pagesize)
             .sort('-publish_date')
