@@ -4,8 +4,6 @@
 
 A Portuguese based IT job search website, where no consultancy agencies are allowed.
 
-**Live Demo:** http://werk.diogoosorio.com/
-
 The Portuguese IT market is saturated with consultancy agencies. The vast majority have little to none scruples when dealing with guys like me (whose a developer). To find a "real" company that's hiring is a difficult, laborious task, as the major job offer websites are saturated with offers from consultancy agencies.
 
 A couple of weekends ago I've spent a couple of hours writting a scrapper that would extract information of offers that I'd potentially be interested into. When commuting to work, a (not so) brilliant idea cross my mind - what if I wasn't guy with this issue?
