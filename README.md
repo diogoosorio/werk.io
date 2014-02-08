@@ -12,20 +12,19 @@ A couple of weekends ago I've spent a couple of hours writting a scrapper that w
 
 The truth is that the job listing websites (for commercial reasons) don't have a real interest in filtering out offers from consultancy agencies (they are the ones who actually pay to have offers published). Last weekend I've decided to write a quick web interface that would answer this specific necessity, **werk.io** as you might have guessed is the final result.
 
-Summary
--------
+
+## Summary
 
 * [Prerequisites](#prerequisites)
-* [Getting started (Ubuntu)](#getting started)
-* [How does it work?](#how does it work?)
+* [Getting started (Ubuntu)](#getting-started)
+* [How does it work?](#how-does-it-work)
 * [Feeder](#feeder)
 * [WebApp](#webapp)
 * [Todo](#todo)
 * [Licensing](#licensing)
 
 
-Prerequisites
--------------
+## Prerequisites
 
 * [MongoDB](http://www.mongodb.org)
 * [Node.js](http://nodejs.org/) / [npm](https://npmjs.org/)
@@ -33,10 +32,9 @@ Prerequisites
 * [Python 2.7](http://www.python.org/)
 
 
-Getting started 
----------------
+## Getting started 
 
-The following set of instructions were written for Ubuntu ![Ubuntu logo](https://github-camo.global.ssl.fastly.net/24ffd70fd53bced9e23cd0e8957e9bb6da67732f/68747470733a2f2f6c68352e676f6f676c6575736572636f6e74656e742e636f6d2f2d32595331636548577979732f41414141414141414141492f41414141414141414141632f304c43625f747354766d552f7334362d632d6b2f70686f746f2e6a7067):
+The following set of instructions were written for Ubuntu:
 
 ```bash
 # Install some dependencies
@@ -76,8 +74,7 @@ node werk.io/webapp/app.js
 ```
 
 
-How does it work?
------------------
+## How does it work?
 
 The application has two main components, a [feeder](#feeder) and an [webapp](#webapp).
 
@@ -88,8 +85,7 @@ The [**feeder**](#feeder) is responsible for retrieving information from a set o
 The [**webapp**](#webapp) is an web interface to consult the information in a more... digestable way.
 
 
-Feeder
-------
+## Feeder
 
 The **feeder** is a small Python script that crawls a set of websites, retrieves and parses the job information and stores it on da Mongo datastore. It also matches every offer against a blacklist of known consultancy agencies to determine if the offer comes from a consultancy agency, or not.
 
@@ -105,8 +101,7 @@ This basically meens that you can run it once to fetch the bulk of information a
 
 
 
-WebApp
-------
+## WebApp
 
 There's also a **Node.js** webapp to help you consume the information retrieved. It's a simple interface built on top of [Sapo Ink](http://ink.sapo.pt) and that uses [express.js](http://expressjs.com/) as an web framework.
 
@@ -116,8 +111,7 @@ Nice features like filtering the results by technology, location and salary rang
 
 
 
-Todo
-----
+## Todo
 
 ### Feeder
 
