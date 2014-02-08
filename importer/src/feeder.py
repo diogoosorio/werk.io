@@ -55,8 +55,4 @@ class JobFeeder(object):
 if __name__ == '__main__':
     feeder = JobFeeder(SCRAPPERS)
     feeder.bootstrap()
-
-    with daemon.DaemonContext():
-        while True:
-            feeder.run()
-            time.sleep(120)
+    feeder.run()
