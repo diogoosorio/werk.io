@@ -2,8 +2,6 @@
     "name": "werk.io",
     "version": "0.0.1",
     "dependencies": {
-        "animate.css": "latest",
-        "angular": "latest",
-        "angular-route": "latest"
+        "opentip": "latest"
     }
 }
