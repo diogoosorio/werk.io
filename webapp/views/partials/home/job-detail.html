@@ -1,15 +1,15 @@
 <div class="large-100 small-100 medium-100">
     <article>
         <div class="column-group">
-            <div class="large-10 medium-10 small-10 vote"> 
+            <div class="large-5 medium-5 small-10 vote content-center"> 
                 <a alt="Vote for {{ job.title }}" title="Vote if you think this is a good job offer" href="javascript:void(0)" data-vote="{{ job.id }}">
                     <i class="icon-circle-arrow-up icon-large"></i>
                 </a>
-                <span data-vote-count="23">
-                    0
+                <span data-job-votes="{{ job.id }}">
+                    {% if job.votes %}{{ job.votes }}{% else %}0{% endif %}
                 </span>
             </div>
-            <div class="large-80 medium-75 small-70">
+            <div class="large-95 medium-95 small-90">
                 <header>
                     <h5>
                         <a href="{{ job.url }}" target="_blank">
