@@ -4,7 +4,7 @@
     <p class="content-center">
         The latest IT job offers in Portugal. Consultancy agencies not allowed.
     </p>
-    <div class="column-group vertical-space">
+    <div class="column-group vertical-space" data-job-container="true">
         {% for key, job_meta in jobs %}
         <div class="large-100 medium-100 small-100">
             <div class="day half-vertical-space">
@@ -26,7 +26,7 @@
                 {% include 'partials/common/pagination.html' %}
             </div>
             <div class="content-center javascript">
-                <a data-pagination="1" class="keyword" href="/?page=2">
+                <a data-pagination="1" class="keyword" href="#">
                     Load more results
                     <i class="icon-angle-down"></i>
                 </a>
