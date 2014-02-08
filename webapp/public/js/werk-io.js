@@ -32,15 +32,22 @@
             );
         },
 
-        onError: function(ev) {
-            this.notify('There was an error submitting your vote.', 'alert');
+        onError: function(ev, response) {
+            var message = 'There was an error submitting your vote.';
+
+            if (response.error !== undefined) {
+                message = response.error;
+            }
+
+            this.notify(message, 'alert');
         },
 
         onSuccess: function(ev) {
+            var response = JSON.parse(ev.target.responseText);
+
             if (ev.target.status === 200) {
-                var response     = JSON.parse(ev.target.responseText),
-                    number_votes = response.votes,
-                    container    = document.querySelector('span[data-job-votes="' + this.jobId + '"]');
+                    var number_votes = response.votes,
+                        container    = document.querySelector('span[data-job-votes="' + this.jobId + '"]');
 
                 if (container) {
                     container.innerText = number_votes;
@@ -50,7 +57,7 @@
                 return;
             }
 
-            this.onError(ev);
+            this.onError(ev, response);
         },
         
         execute: function(ev) {
