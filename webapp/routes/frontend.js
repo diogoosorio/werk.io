@@ -32,4 +32,8 @@ module.exports = function(app) {
             .exec(render);
     });
 
+
+    app.get('/about', function(req, res) {
+        res.render('about.html');
+    });
 };
