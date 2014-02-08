@@ -1,12 +1,13 @@
 // Frontend routes
 
-var models   = require('../lib/models');
-var pagesize = 20;
+var Models    = require('../lib/models');
+var Paginator = require('paginator');
+var pagesize  = 20;
 
 module.exports = function(app) {
 
     app.get('/', function(req, res) {
-        var page = req.query.page !== undefined ? parseInt(req.query.page) : 1,
+        var page = req.query.page !== undefined && !isNaN(parseInt(req.query.page)) ? parseInt(req.query.page) : 1,
             render = function(err, jobs, count) {
                 var ordered_jobs = {},
                 date, job, key;
@@ -22,15 +23,18 @@ module.exports = function(app) {
                     ordered_jobs[date.getTime()].entries.push(job);
                 }
 
-                res.render('index.html', {jobs: ordered_jobs, page: page, pages: Math.ceil(count / page)});
+                var paginator = new Paginator(pagesize, 5),
+                    pagination = paginator.build(count, page);
+
+                res.render('index.html', {jobs: ordered_jobs, pagination: pagination});
             };
 
-        models.Job.find({is_consultancy: false})
+        Models.Job.find({is_consultancy: false})
             .limit(pagesize)
             .skip((page - 1) * pagesize)
             .sort('-publish_date')
             .exec(function(err, jobs) {
-                models.Job.count({is_consultancy: false})
+                Models.Job.count({is_consultancy: false})
                     .exec(function(err, count) {
                         return render(err, jobs, count);
                     });
