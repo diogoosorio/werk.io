@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var jobSchema = new mongoose.Schema({
+var JobSchema = new mongoose.Schema({
     body:           String,
     title:          String,
     company:        String,
@@ -13,7 +13,7 @@ var jobSchema = new mongoose.Schema({
     url:            String,
     votes:          Number
 });
+JobSchema.index({votes: 1, is_consultancy: 1});
 
-jobSchema.index({votes: 1, is_consultancy: 1});
 
-module.exports.Job = mongoose.model('Job', jobSchema, 'jobs');
+module.exports.Job = mongoose.model('Job', JobSchema, 'jobs');
