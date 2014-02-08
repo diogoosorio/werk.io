@@ -57,8 +57,9 @@ module.exports = function(app) {
             vote_cookie = is_array(req.cookies.votes) ? req.cookies.votes : [],
             can_vote    = vote_cookie.indexOf(job_id) === -1;
 
-        var error = function(message) {
-            return res.json(500, {success: false, error: message});
+        var error = function(message, status_code) {
+            status_code = status_code === undefined ? 500 : status_code;
+            return res.json(status_code, {success: false, error: message});
         };
 
         var success = function(job) {
@@ -68,7 +69,7 @@ module.exports = function(app) {
         };
 
         if (!can_vote) {
-            return error("You've already voted on this job entry.");
+            return error("You've already voted on this job entry.", 403);
         }
         
         Models.Job.findByIdAndUpdate(job_id, {$inc: {votes: 1}}, function(err, job) {
