@@ -62,6 +62,8 @@ class ITJobs(object):
 
                 jobs.append(job)
 
+            page_number += 1
+
             if len(jobs) > 0:
                 yield jobs
 
