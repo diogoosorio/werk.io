@@ -118,12 +118,14 @@ Nice features like filtering the results by technology, location and salary rang
 * Review the quick'n'dirty parsing mechanism and make it more efficient
 * Add a couple of more data sources to the feeder
 * Turn it into a daemon
+* Tests (***coff, coff***)
 
 
 ### Webapp
 
 * Test this on other browsers besides Chrome
 * Test this on other devices besides my PC
+* Tests (***coff, coff***)
 * Have another go with Angular.js. Hypster all the things...
 * Add a filter by technology
 * Add a filter by location
