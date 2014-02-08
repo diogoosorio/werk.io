@@ -94,8 +94,13 @@ a[data-pagination] {
     margin-right: 0.6em;
 }
 
-.javascript {
+.javascript, .hidden {
     display: none;
+}
+
+
+.opentip-container .opentip {
+    padding-top: 0px;
 }
 
 @media screen and (min-width: 767px) {
