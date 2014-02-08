@@ -2,7 +2,7 @@
 
 var Models    = require('../lib/models');
 var Paginator = require('paginator');
-var pagesize  = 20;
+var pagesize  = 15;
 
 module.exports = function(app) {
 
