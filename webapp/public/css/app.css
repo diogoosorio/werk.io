@@ -93,6 +93,11 @@ a[data-pagination] {
 .day i {
     margin-right: 0.6em;
 }
+
+.javascript {
+    display: none;
+}
+
 @media screen and (min-width: 767px) {
 
 }
