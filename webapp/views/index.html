@@ -5,12 +5,12 @@
         The latest IT job offers in Portugal. Consultancy agencies not allowed.
     </p>
     <div class="column-group vertical-space">
-        {% for job_meta in jobs %}
+        {% for key, job_meta in jobs %}
         <div class="large-100 medium-100 small-100">
             <div class="day half-vertical-space">
                 <i class="icon-calendar"></i>
-                <time datetime="{{ moment(job_meta.date).format('YYYY-MM-DD) }}">
-                    {{ moment(job_meta.date).format('MMMM Do YYYY') }}
+                <time datetime="{{ moment(job_meta.date).format('YYYY-MM-DD') }}">
+                    {{ moment(job_meta.date).format('dddd, MMMM Do') }}
                 </time>
             </div>
             <div class="column-group relative">
@@ -20,18 +20,6 @@
             </div>
         </div>
         {% endfor %}
-
-        <div class="large-100 medium-100 small-100">
-            <div class="day half-vertical-space">
-                <i class="icon-calendar"></i>
-                <time datetime="2014-02-01">Saturday, February 1st</time>
-            </div>
-            <div class="column-group relative">
-                {% include 'partials/home/job-detail.html' %}
-                {% include 'partials/home/job-detail.html' %}
-                {% include 'partials/home/job-detail.html' %}
-            </div>
-        </div>
 
         <div class="large-100 small-100 medium-100 content-center vertical-space">
             <a data-pagination="1" class="keyword" href="/?page=2">
