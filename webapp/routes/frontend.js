@@ -45,4 +45,42 @@ module.exports = function(app) {
     app.get('/about', function(req, res) {
         res.render('about.html');
     });
+
+
+    app.post('/job/:id/vote', function(req, res) {
+        var is_array = function(array) {
+            return (array !== undefined) &&
+                   Object.prototype.toString.call(array) === '[object Array]';
+        };
+
+        var job_id      = req.params.id,
+            vote_cookie = is_array(req.cookies.votes) ? req.cookies.votes : [],
+            can_vote    = vote_cookie.indexOf(job_id) === -1;
+
+        var error = function(message) {
+            return res.json(500, {success: false, error: message});
+        };
+
+        var success = function(job) {
+            vote_cookie.push(job._id);
+            res.cookie("votes", vote_cookie, {httpOnly: true});
+            return res.json(200, {success: true, error: null, votes: job.votes});
+        };
+
+        if (!can_vote) {
+            return error("You've already voted on this job entry.");
+        }
+        
+        Models.Job.findByIdAndUpdate(job_id, {$inc: {votes: 1}}, function(err, job) {
+            if (err !== null) {
+                return error(err.message);
+            }
+
+            if (job === null) {
+                return error("Invalid job ID");
+            }
+
+            return success(job);
+        });
+    });
 };
