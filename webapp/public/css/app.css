@@ -90,14 +90,14 @@ a[data-pagination] {
 .day i {
     margin-right: 0.6em;
 }
-
 .javascript, .hidden {
     display: none;
 }
-
-
 .opentip-container .opentip {
     padding-top: 0px;
+}
+.rounded {
+    border-radius: 1em;
 }
 
 @media screen and (min-width: 767px) {
