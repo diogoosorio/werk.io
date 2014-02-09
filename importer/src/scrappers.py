@@ -55,7 +55,7 @@ class ITJobs(object):
             for href in page_entries:
                 job = self.entry(href)
 
-                if job['publish_date'] < since_date or job['source_id'] == source_id:
+                if self.exists(job):
                     print "Stoping insertion, because found a duplicated entry."
                     more_recent_doc = True
                     break
@@ -67,6 +67,8 @@ class ITJobs(object):
             if len(jobs) > 0:
                 yield jobs
 
+    def exists(self, job):
+        return self.db.jobs.find_one({'source_id': job['source_id']}) != None
 
     def page_entries(self, page):
         url = self.url.format(self.base_url, page)
