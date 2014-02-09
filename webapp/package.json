@@ -1,6 +1,6 @@
 {
     "name": "werk.io",
-    "version": "0.1",
+    "version": "0.1.0",
     "private": true,
     "scripts": {
         "start": "node app.js"
@@ -10,6 +10,7 @@
         "mongoose": "*",
         "nunjucks": "*",
         "moment": "*",
-        "paginator": "*"
+        "paginator": "*",
+        "bower": "*"
     }
 }
